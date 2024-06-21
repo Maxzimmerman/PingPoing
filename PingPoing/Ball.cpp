@@ -53,6 +53,11 @@ struct Ball {
 			p2.score++;
 		}
 	}
+
+	void resetBall() {
+		ballSpeedX = 300;
+		ballSpeedY = 300;
+	}
 };
 
 #endif

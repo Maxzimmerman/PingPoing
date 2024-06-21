@@ -12,6 +12,9 @@ int main() {
 	// Game
 	Game game;
 	game.gameOver = false;
+	game.resetButton.button = { GetScreenWidth() / 2.0f - 50, GetScreenHeight() / 2.0f - 20, 100, 40 };
+	game.resetButton.color = GREEN;
+	game.resetButton.hovered = false;
 
 	// Ball
 	Ball ball;
@@ -43,6 +46,9 @@ int main() {
 	while (!WindowShouldClose()) {
 
 		float dT = GetFrameTime();
+
+		// button logic
+		game.checkIfButtonClicked();
 
 		// Collision With Paddle
 		ball.ballCenter = ball.ballY - (ball.ballRadius / 2);

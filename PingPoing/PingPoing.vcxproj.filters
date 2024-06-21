@@ -19,5 +19,6 @@
     <ClCompile Include="Paddle.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="ResetButton.cpp" />
   </ItemGroup>
 </Project>
