@@ -22,10 +22,10 @@ struct Paddle {
 	}
 
 	void PaddleInputWS(float dT, float ScreenHeight) {
-		if (IsKeyDown(KEY_W) && y > 0) {
+		if (IsKeyDown(KEY_W) && Bottom > 0) {
 			this->updatePositionUp(GetFrameTime());
 		}
-		else if (IsKeyDown(KEY_S) && y < ScreenHeight) {
+		else if (IsKeyDown(KEY_S) && Bottom < ScreenHeight) {
 			this->updatePositionDown(GetFrameTime());
 		}
 	}
@@ -34,7 +34,7 @@ struct Paddle {
 		if (IsKeyDown(KEY_UP) && y > 0) {
 			this->updatePositionUp(GetFrameTime());
 		}
-		else if (IsKeyDown(KEY_DOWN) && y < ScreenHeight) {
+		else if (IsKeyDown(KEY_DOWN) && y + height < ScreenHeight) {
 			this->updatePositionDown(GetFrameTime());
 		}
 	}

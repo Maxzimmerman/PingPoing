@@ -11,6 +11,8 @@ struct Ball {
 	float ballSpeedX;
 	float ballSpeedY;
 	float ballCenter;
+	float timer;
+	float interval;
 
 	void updatePosition(float dT) {
 		ballX += ballSpeedX * dT;
@@ -57,6 +59,16 @@ struct Ball {
 	void resetBall() {
 		ballSpeedX = 300;
 		ballSpeedY = 300;
+	}
+
+	void increaseBallVelocity() {
+		this->timer += GetFrameTime();
+
+		if (this->timer >= this->interval) {
+			this->ballSpeedX += 1000;
+			this->ballSpeedY += 1000;
+			timer = 0.0f;
+		}
 	}
 };
 

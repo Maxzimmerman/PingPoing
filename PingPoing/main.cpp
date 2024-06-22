@@ -12,7 +12,7 @@ int main() {
 	// Game
 	Game game;
 	game.gameOver = false;
-	game.resetButton.button = { GetScreenWidth() / 2.0f - 50, GetScreenHeight() / 2.0f - 20, 100, 40 };
+	game.resetButton.button = { GetScreenWidth() / 2.0f - 50, GetScreenHeight() / 2.0f - 50, 100, 40 };
 	game.resetButton.color = GREEN;
 	game.resetButton.hovered = false;
 
@@ -21,8 +21,10 @@ int main() {
 	ball.ballX = GetScreenWidth() / 2.0f;
 	ball.ballY = GetScreenHeight() / 2.0f;
 	ball.ballRadius = 5;
-	ball.ballSpeedX = 1000;
-	ball.ballSpeedY = 1000;
+	ball.ballSpeedX = 300;
+	ball.ballSpeedY = 300;
+	ball.timer = 0.0f;
+	ball.interval = 1.0f;
 
 	// Paddle
 	Paddle p1;
@@ -32,7 +34,7 @@ int main() {
 	p1.height = 100;
 	p1.color = WHITE;
 	p1.score = 0;
-	p1.paddleSpeedY = 300;
+	p1.paddleSpeedY = 500;
 
 	Paddle p2;
 	p2.x = GetScreenWidth() - 50 - 10;
@@ -41,14 +43,11 @@ int main() {
 	p2.height = 100;
 	p2.color = WHITE; 
 	p2.score = 0;
-	p2.paddleSpeedY = 300;
+	p2.paddleSpeedY = 500;
 
 	while (!WindowShouldClose()) {
 
 		float dT = GetFrameTime();
-
-		// button logic
-		game.checkIfButtonClicked();
 
 		// Collision With Paddle
 		ball.ballCenter = ball.ballY - (ball.ballRadius / 2);
@@ -56,6 +55,7 @@ int main() {
 		p2.Bottom = p2.y + p2.height;
 
 		ball.updatePosition(dT);
+		ball.increaseBallVelocity();
 		ball.collisionWithWindowBorders(GetScreenWidth(), GetScreenHeight(), p1, p2);
 		ball.collisionCheckWithFirstPaddle(p1.Bottom, p1.x, p1.y);
 		ball.collisionCheckWithSecondPaddle(p2.Bottom, p2.x, p2.y);
